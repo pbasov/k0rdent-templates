@@ -14,6 +14,12 @@ spec:
   controlPlaneLoadBalancer:
     healthCheckProtocol: TCP
   network:
+    cni:
+      cniIngressRules:
+      - description: vxlan (cilium)
+        fromPort: 8472
+        protocol: udp
+        toPort: 8472
     additionalControlPlaneIngressRules:
       - description: "k0s controller join API"
         protocol: tcp

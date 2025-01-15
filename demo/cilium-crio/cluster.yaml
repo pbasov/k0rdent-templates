@@ -18,4 +18,4 @@ spec:
     worker:
       instanceType: t3.small
       amiID: ami-0bcabb253aa959561
-    workersNumber: 1
+    workersNumber: 3
