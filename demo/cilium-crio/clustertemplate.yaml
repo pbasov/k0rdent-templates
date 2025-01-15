@@ -1,0 +1,18 @@
+apiVersion: hmc.mirantis.com/v1alpha1
+kind: ClusterTemplate
+metadata:
+  name: aws-standalone-cp-cilium-0-0-1
+  namespace: hmc-system
+  annotations:
+    helm.sh/resource-policy: keep
+  labels:
+    hmc.mirantis.com/component: hmc
+spec:
+  helm:
+    chartSpec:
+      chart: aws-standalone-cp-cilium
+      version: 0.0.1
+      interval: 10m0s
+      sourceRef:
+        kind: HelmRepository
+        name: pbasov-templates
