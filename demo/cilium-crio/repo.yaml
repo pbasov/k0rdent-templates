@@ -2,9 +2,9 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   labels:
-    hmc.mirantis.com/managed: "true"
+    k0rdent.mirantis.com/managed: "true"
   name: pbasov-templates
-  namespace: hmc-system
+  namespace: kcm-system
 spec:
   interval: 10m0s
   provider: generic
