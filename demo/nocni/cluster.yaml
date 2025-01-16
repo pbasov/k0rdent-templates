@@ -1,0 +1,21 @@
+apiVersion: k0rdent.mirantis.com/v1alpha1
+kind: ClusterDeployment
+metadata:
+  name: aws-dev-cilium
+  namespace: kcm-system
+  labels:
+    k0rdent.mirantis.com/component: kcm
+spec:
+  template: aws-standalone-cp-nocni-0-0-1
+  credential: aws-cluster-identity-cred
+  config:
+    controlPlane:
+      instanceType: t3.medium
+      amiID: ami-0bcabb253aa959561
+    controlPlaneNumber: 1
+    publicIP: true
+    region: eu-north-1
+    worker:
+      instanceType: t3.small
+      amiID: ami-0bcabb253aa959561
+    workersNumber: 3
