@@ -21,7 +21,7 @@ jobs:
       with:
         name: aws-standalone-cp-cilium
         repository: pbasov/k0rdent-templates
-        tag: 0.0.1
+        tag: 0.0.2
         path: charts/aws-standalone-cp-cilium
         registry: ghcr.io
         registry_username: ${{ github.actor }}
@@ -32,7 +32,7 @@ jobs:
       with:
         name: aws-standalone-cp-nocni
         repository: pbasov/k0rdent-templates
-        tag: 0.0.1
+        tag: 0.0.2
         path: charts/aws-standalone-cp-nocni
         registry: ghcr.io
         registry_username: ${{ github.actor }}
