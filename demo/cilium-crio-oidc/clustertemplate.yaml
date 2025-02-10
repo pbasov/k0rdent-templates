@@ -1,7 +1,7 @@
 apiVersion: k0rdent.mirantis.com/v1alpha1
 kind: ClusterTemplate
 metadata:
-  name: aws-standalone-cp-nocni-0-0-3
+  name: aws-standalone-cp-cilium-oidc-0-0-1
   namespace: kcm-system
   annotations:
     helm.sh/resource-policy: keep
@@ -10,8 +10,8 @@ metadata:
 spec:
   helm:
     chartSpec:
-      chart: aws-standalone-cp-nocni
-      version: 0.0.3
+      chart: aws-standalone-cp-cilium-oidc
+      version: 0.0.1
       interval: 10m0s
       sourceRef:
         kind: HelmRepository

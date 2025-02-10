@@ -6,16 +6,23 @@ metadata:
   labels:
     k0rdent.mirantis.com/component: kcm
 spec:
-  template: aws-standalone-cp-nocni-0-0-3
+  template: aws-standalone-cp-cilium-oidc-0-0-1
   credential: aws-cluster-identity-cred
   config:
     controlPlane:
       instanceType: t3.medium
       amiID: ami-0bcabb253aa959561
-    controlPlaneNumber: 1
+    controlPlaneNumber: 3
     publicIP: true
     region: eu-north-1
     worker:
       instanceType: t3.small
       amiID: ami-0bcabb253aa959561
     workersNumber: 3
+  oidc:
+    oidcClientID: dev-1
+    oidcGroupsClaim: groups
+    oidcGroupsPrefix: 'keycloak:'
+    oidcIssuerURL: https://keycloak.example.dev/realms/realmWithLdap
+    oidcUsernameClaim: name
+    oidcUsernamePrefix: 'keycloak:'
