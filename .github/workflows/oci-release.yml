@@ -60,3 +60,14 @@ jobs:
         registry_username: ${{ github.actor }}
         registry_password: ${{ secrets.GITHUB_TOKEN }}
         update_dependencies: 'true'
+    - name: Chart | Push
+      uses: appany/helm-oci-chart-releaser@v0.4.2
+      with:
+        name: openstack-standalone-cp-nocni
+        repository: pbasov/k0rdent-templates
+        tag: 0.0.1
+        path: charts/openstack-standalone-cp-nocni
+        registry: ghcr.io
+        registry_username: ${{ github.actor }}
+        registry_password: ${{ secrets.GITHUB_TOKEN }}
+        update_dependencies: 'true'
