@@ -2,11 +2,11 @@
     {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
-{{- define "awsmachinetemplate.controlplane.name" -}}
+{{- define "openstackmachinetemplate.controlplane.name" -}}
     {{- include "cluster.name" . }}-cp-mt
 {{- end }}
 
-{{- define "awsmachinetemplate.worker.name" -}}
+{{- define "openstackmachinetemplate.worker.name" -}}
     {{- include "cluster.name" . }}-worker-mt
 {{- end }}
 
