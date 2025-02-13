@@ -47,6 +47,8 @@ spec:
                       effect: NoSchedule
                     - key: node-role.kubernetes.io/master
                       effect: NoSchedule
+                    - key: node.kubernetes.io/not-ready
+                      effect: NoSchedule
               - name: openstack-csi
                 chartname: openstack/openstack-cinder-csi
                 version: 2.31.2
