@@ -60,13 +60,15 @@ spec:
                       isDefault: false
                       allowVolumeExpansion: true
                     retain:
-                      isDefault: false
+                      isDefault: true
                       allowVolumeExpansion: false
                   secret:
                     enabled: true
                     name: openstack-cloud-config
                     create: false
                   csi:
+                    provisioner:
+                      topology: false
                     plugin:
                       nodePlugin:
                         kubeletDir: /var/lib/k0s/kubelet
