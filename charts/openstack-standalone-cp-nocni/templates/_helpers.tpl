@@ -10,6 +10,14 @@
     {{- include "cluster.name" . }}-worker-mt
 {{- end }}
 
+{{- define "openstackmachinetemplate.ingress.name" -}}
+    {{- include "cluster.name" . }}-ingress-mt
+{{- end }}
+
+{{- define "openstackmachinetemplate.gpu.name" -}}
+    {{- include "cluster.name" . }}-gpu-mt
+{{- end }}
+
 {{- define "k0scontrolplane.name" -}}
     {{- include "cluster.name" . }}-cp
 {{- end }}
@@ -18,6 +26,14 @@
     {{- include "cluster.name" . }}-machine-config
 {{- end }}
 
-{{- define "machinedeployment.name" -}}
-    {{- include "cluster.name" . }}-md
+{{- define "machinedeployment.worker.name" -}}
+    {{- include "cluster.name" . }}-worker-md
+{{- end }}
+
+{{- define "machinedeployment.ingress.name" -}}
+    {{- include "cluster.name" . }}-ingress-md
+{{- end }}
+
+{{- define "machinedeployment.gpu.name" -}}
+    {{- include "cluster.name" . }}-gpu-md
 {{- end }}

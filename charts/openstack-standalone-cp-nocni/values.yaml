@@ -1,5 +1,7 @@
 controlPlaneNumber: 3
 workersNumber: 2
+ingressNumber: 2
+gpuNumber: 1
 
 clusterNetwork:
   pods:
@@ -58,6 +60,38 @@ controlPlane:
         projectID: ""
 
 worker:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  portOpts: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+    - filter:
+        name: "default"
+        description: ""
+        projectID: ""
+
+ingress:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  portOpts: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+    - filter:
+        name: "default"
+        description: ""
+        projectID: ""
+
+gpu:
   sshPublicKey: ""
   providerID: ""
   flavor: ""
