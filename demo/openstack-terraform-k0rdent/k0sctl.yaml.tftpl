@@ -1,0 +1,31 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: k0s-cluster
+spec:
+  k0s:
+    version: v1.32.2+k0s.0
+    dynamicConfig: true
+    config:
+      args:
+      - --disable-components=konnectivity-server
+      apiVersion: k0s.k0sproject.io/v1beta1
+      kind: ClusterConfig
+      metadata:
+        name: k0s-k0rdent-base
+      spec:
+        network:
+          provider: kuberouter
+        storage:
+          type: etcd
+  hosts:
+%{ for index, name in instance_names ~}
+  - role: controller+worker
+    privateAddress: ${private_ips[name]}
+    noTaints: true
+    installFlags:
+    - --disable-components=konnectivity-server
+    ssh:
+      address: ${floating_ips[name]}
+      user: ubuntu
+%{ endfor ~}

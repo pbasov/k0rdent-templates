@@ -13,3 +13,13 @@
 .idea/
 *.tmproj
 .vscode/
+# terraform
+demo/openstack-terraform-k0rdent/infra/.terraform*
+demo/openstack-terraform-k0rdent/infra/terraform.tfstate
+demo/openstack-terraform-k0rdent/infra/terraform.tfstate.backup
+
+demo/openstack-terraform-k0rdent/tenant/.terraform*
+demo/openstack-terraform-k0rdent/tenant/terraform.tfstate
+demo/openstack-terraform-k0rdent/tenant/terraform.tfstate.backup
+
+demo/openstack-terraform-k0rdent/k0sctl.yaml
