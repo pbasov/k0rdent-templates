@@ -37,4 +37,8 @@ spec:
       {{- end }}
       {{- if not ( .Values.ingress.sshPublicKey | empty) }}
       sshKeyName: {{ .Values.ingress.sshPublicKey }}
-      {{- end }}      
+      {{- end }}
+      {{- if not ( .Values.ingress.schedulerHintAdditionalProperties | empty) }}:
+      schedulerHintAdditionalProperties:
+        {{ .Values.ingress.schedulerHintAdditionalProperties | toYaml | nindent 8 }}
+      {{- end }}

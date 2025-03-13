@@ -1,0 +1,40 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: OpenStackMachineTemplate
+metadata:
+  name: {{ include "openstackmachinetemplate.gpul40.name" . }}
+spec:
+  template:
+    spec:
+      flavor: {{ .Values.gpul40.flavor }}
+      identityRef:
+        name: {{ .Values.identityRef.name }}
+        region: {{ .Values.identityRef.region }}
+        cloudName: {{ .Values.identityRef.cloudName}}
+      image:
+        filter:
+          name: {{ .Values.gpul40.image.filter.name }}
+          {{- if .Values.gpul40.image.filter.tags }}
+          tags:
+            {{- range $tag := .Values.gpul40.image.filter.tags }}
+            - {{ $tag }}
+            {{- end }}
+          {{- end }}
+      {{- if gt (len .Values.gpul40.portOpts) 0 }}
+      portOpts:
+        {{ .Values.gpul40.portOpts | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if .Values.gpul40.rootVolume }}
+      rootVolume:
+        {{ .Values.gpul40.rootVolume | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.gpul40.additionalBlockDevices) 0 }}
+      additionalBlockDevices:
+        {{ .Values.gpul40.additionalBlockDevices | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.gpul40.securityGroups) 0 }}
+      securityGroups:
+        {{ .Values.gpul40.securityGroups | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if not ( .Values.gpul40.sshPublicKey | empty) }}
+      sshKeyName: {{ .Values.gpul40.sshPublicKey }}
+      {{- end }}

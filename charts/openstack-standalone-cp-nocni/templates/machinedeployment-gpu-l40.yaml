@@ -1,13 +1,13 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
-  name: {{ include "machinedeployment.gpu.name" . }}
+  name: {{ include "machinedeployment.gpul40.name" . }}
   annotations:
     # Temporary fix to address https://github.com/k0sproject/k0smotron/issues/911
     machineset.cluster.x-k8s.io/skip-preflight-checks: "ControlPlaneIsStable"
 spec:
   clusterName: {{ include "cluster.name" . }}
-  replicas: {{ .Values.gpuNumber }}
+  replicas: {{ .Values.gpuNumberL40 }}
   selector:
     matchLabels:
       cluster.x-k8s.io/cluster-name: {{ include "cluster.name" . }}
@@ -17,6 +17,7 @@ spec:
         cluster.x-k8s.io/cluster-name: {{ include "cluster.name" . }}
         node-role.kubernetes.io/gpu: ""
         node.kubernetes.io/role: gpu
+        node.kubernetes.io/gpu-type: "l40"
     spec:
       taints:
         - effect: NoSchedule
@@ -30,4 +31,4 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: OpenStackMachineTemplate
-        name: {{ include "openstackmachinetemplate.gpu.name" . }}
+        name: {{ include "openstackmachinetemplate.gpul40.name" . }}

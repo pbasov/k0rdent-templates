@@ -14,8 +14,12 @@
     {{- include "cluster.name" . }}-ingress-mt
 {{- end }}
 
-{{- define "openstackmachinetemplate.gpu.name" -}}
-    {{- include "cluster.name" . }}-gpu-mt
+{{- define "openstackmachinetemplate.gpul4.name" -}}
+    {{- include "cluster.name" . }}-gpul4-mt
+{{- end }}
+
+{{- define "openstackmachinetemplate.gpul40.name" -}}
+    {{- include "cluster.name" . }}-gpul40-mt
 {{- end }}
 
 {{- define "k0scontrolplane.name" -}}
@@ -34,6 +38,10 @@
     {{- include "cluster.name" . }}-ingress-md
 {{- end }}
 
-{{- define "machinedeployment.gpu.name" -}}
-    {{- include "cluster.name" . }}-gpu-md
+{{- define "machinedeployment.gpul4.name" -}}
+    {{- include "cluster.name" . }}-gpul4-md
+{{- end }}
+
+{{- define "machinedeployment.gpul40.name" -}}
+    {{- include "cluster.name" . }}-gpul40-md
 {{- end }}
