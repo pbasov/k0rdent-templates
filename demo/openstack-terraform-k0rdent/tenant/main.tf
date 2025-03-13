@@ -56,3 +56,21 @@ output "project_id" {
 output "user_id" {
   value = openstack_identity_user_v3.user.id
 }
+
+output "clouds_yaml_content" {
+  value = <<EOF
+clouds:
+  ${var.cloud_name}:
+    auth:
+      auth_url: ${var.auth_url}
+      project_id: ${openstack_identity_project_v3.tenant.id}
+      username: ${var.user_name}
+      password: ${random_password.user_password.result}
+      user_domain_name: ${var.user_domain_name}
+      project_domain_name: ${var.project_domain_name}
+    region_name: ${var.region_name}
+    interface: public
+    identity_api_version: 3
+EOF
+  sensitive = false
+}

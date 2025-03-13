@@ -197,6 +197,21 @@ resource "local_file" "k0sctl_config" {
   filename = "${path.module}/../k0sctl.yaml"
 }
 
+# Application Credentials
+resource "openstack_identity_application_credential_v3" "app_cred" {
+  name        = var.app_cred_name
+  description = var.app_cred_description
+  
+  # Optional: Specify roles if needed
+  roles = var.app_cred_roles
+  
+  # Optional: Set expiration time
+  expires_at = var.app_cred_expiration
+  
+  # Optional: Allow creating other application credentials
+  unrestricted = var.app_cred_unrestricted
+}
+
 # Outputs
 output "network_id" {
   value = openstack_networking_network_v2.network.id
@@ -221,4 +236,39 @@ output "instance_ports" {
     for i, instance in openstack_compute_instance_v2.instances :
     instance.name => instance.network[*].port
   }
+}
+
+# Application Credential Outputs (as clear text)
+output "application_credential_id" {
+  value       = openstack_identity_application_credential_v3.app_cred.id
+  description = "The ID of the application credential"
+  sensitive   = true
+}
+
+output "application_credential_name" {
+  value       = openstack_identity_application_credential_v3.app_cred.name
+  description = "The name of the application credential"
+  sensitive   = true
+}
+
+output "application_credential_secret" {
+  value       = openstack_identity_application_credential_v3.app_cred.secret
+  description = "The secret of the application credential"
+  sensitive   = true # Setting to false to output as clear text (not recommended for production)
+}
+
+output "clouds_yaml_content" {
+  value       = <<-EOT
+    clouds:
+      k0rdent:
+        auth:
+          auth_url: <your_auth_url>
+          application_credential_id: ${openstack_identity_application_credential_v3.app_cred.id}
+          application_credential_secret: ${openstack_identity_application_credential_v3.app_cred.secret}
+        region_name: <your_region>
+        interface: public
+        identity_api_version: 3
+  EOT
+  description = "clouds.yaml content for the application credential"
+  sensitive   = true # Setting to false to output as clear text (not recommended for production)
 }

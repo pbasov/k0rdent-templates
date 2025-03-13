@@ -72,3 +72,34 @@ variable "vm_volume_type" {
   type        = string
   default     = "netapp-nvme"
 }
+
+# Application Credential variables
+variable "app_cred_name" {
+  description = "Name of the application credential to create"
+  type        = string
+  default     = "k0rdent-app-cred"
+}
+
+variable "app_cred_description" {
+  description = "Description of the application credential"
+  type        = string
+  default     = "Application credential for K0rdent OpenStack infrastructure"
+}
+
+variable "app_cred_roles" {
+  description = "List of roles to assign to the application credential"
+  type        = list(string)
+  default     = ["member"]
+}
+
+variable "app_cred_expiration" {
+  description = "Expiration time for the application credential (RFC3339 format, e.g., 2025-12-31T23:59:59Z)"
+  type        = string
+  default     = null
+}
+
+variable "app_cred_unrestricted" {
+  description = "Whether the application credential has unrestricted access"
+  type        = bool
+  default     = false
+}

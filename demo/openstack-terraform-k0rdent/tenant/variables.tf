@@ -28,6 +28,35 @@ variable "password_special" {
   default     = false
 }
 
+variable "cloud_name" {
+  description = "Name of the cloud in clouds.yaml"
+  type        = string
+  default     = "openstack"
+}
+
+variable "auth_url" {
+  description = "Authentication URL for OpenStack"
+  type        = string
+}
+
+variable "user_domain_name" {
+  description = "User domain name in OpenStack"
+  type        = string
+  default     = "Default"
+}
+
+variable "project_domain_name" {
+  description = "Project domain name in OpenStack"
+  type        = string
+  default     = "Default"
+}
+
+variable "region_name" {
+  description = "Region name in OpenStack"
+  type        = string
+  default     = "RegionOne"
+}
+
 variable "password_override_special" {
   description = "Special characters to use in password"
   type        = string
