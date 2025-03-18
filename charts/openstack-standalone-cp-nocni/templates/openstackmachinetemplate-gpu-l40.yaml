@@ -20,20 +20,16 @@ spec:
             {{- end }}
           {{- end }}
       {{- if gt (len .Values.gpul40.portOpts) 0 }}
-      portOpts:
-        {{ .Values.gpul40.portOpts | toYaml | nindent 8 }}
+      portOpts: {{ .Values.gpul40.portOpts | toYaml | nindent 8 }}
       {{- end }}
       {{- if .Values.gpul40.rootVolume }}
-      rootVolume:
-        {{ .Values.gpul40.rootVolume | toYaml | nindent 8 }}
+      rootVolume: {{ .Values.gpul40.rootVolume | toYaml | nindent 8 }}
       {{- end }}
       {{- if gt (len .Values.gpul40.additionalBlockDevices) 0 }}
-      additionalBlockDevices:
-        {{ .Values.gpul40.additionalBlockDevices | toYaml | nindent 8 }}
+      additionalBlockDevices: {{ .Values.gpul40.additionalBlockDevices | toYaml | nindent 8 }}
       {{- end }}
       {{- if gt (len .Values.gpul40.securityGroups) 0 }}
-      securityGroups:
-        {{ .Values.gpul40.securityGroups | toYaml | nindent 8 }}
+      securityGroups: {{ .Values.gpul40.securityGroups | toYaml | nindent 8 }}
       {{- end }}
       {{- if not ( .Values.gpul40.sshPublicKey | empty) }}
       sshKeyName: {{ .Values.gpul40.sshPublicKey }}
