@@ -23,7 +23,7 @@ identityRef:
   region: ""
 
 bastion:
-  enabled: false
+  enabled: true
   spec:
     providerID: ""
     flavor: ""
@@ -57,10 +57,10 @@ controlPlane:
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
-    - filter:
-        name: "default"
-        description: ""
-        projectID: ""
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
 
 worker:
   sshPublicKey: ""
@@ -73,10 +73,10 @@ worker:
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
-    - filter:
-        name: "default"
-        description: ""
-        projectID: ""
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
 
 ingress:
   sshPublicKey: ""
@@ -89,10 +89,10 @@ ingress:
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
-    - filter:
-        name: "default"
-        description: ""
-        projectID: ""
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
 
 gpul4:
   sshPublicKey: ""
@@ -105,10 +105,10 @@ gpul4:
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
-    - filter:
-        name: "default"
-        description: ""
-        projectID: ""
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
 
 gpul40:
   sshPublicKey: ""
@@ -121,10 +121,10 @@ gpul40:
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
-    - filter:
-        name: "default"
-        description: ""
-        projectID: ""
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
 
 k0s:
   version: v1.31.5+k0s.0
