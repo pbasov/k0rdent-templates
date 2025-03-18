@@ -19,9 +19,9 @@ spec:
             - {{ $tag }}
             {{- end }}
           {{- end }}
-      {{- if gt (len .Values.controlPlane.portOpts) 0 }}
-      portOpts:
-        {{ .Values.controlPlane.portOpts | toYaml | nindent 8 }}
+      {{- if gt (len .Values.controlPlane.ports) 0 }}
+      ports:
+        {{ .Values.controlPlane.ports | toYaml | nindent 8 }}
       {{- end }}
       {{- if .Values.controlPlane.rootVolume }}
       rootVolume:

@@ -270,7 +270,7 @@
             }
           }
         },
-        "portOpts": {
+        "ports": {
           "type": "array",
           "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
@@ -429,7 +429,7 @@
             }
           }
         },
-        "portOpts": {
+        "ports": {
           "type": "array",
           "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
@@ -588,7 +588,7 @@
             }
           }
         },
-        "portOpts": {
+        "ports": {
           "type": "array",
           "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
@@ -747,7 +747,7 @@
             }
           }
         },
-        "portOpts": {
+        "ports": {
           "type": "array",
           "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
@@ -822,7 +822,7 @@
             }
           }
         },
-        "portOpts": {
+        "ports": {
           "type": "array",
           "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {

@@ -19,9 +19,9 @@ spec:
             - {{ $tag }}
             {{- end }}
           {{- end }}
-      {{- if gt (len .Values.worker.portOpts) 0 }}
-      portOpts:
-        {{ .Values.worker.portOpts | toYaml | nindent 8 }}
+      {{- if gt (len .Values.worker.ports) 0 }}
+      ports:
+        {{ .Values.worker.ports | toYaml | nindent 8 }}
       {{- end }}
       {{- if .Values.worker.rootVolume }}
       rootVolume:

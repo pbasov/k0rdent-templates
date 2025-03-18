@@ -19,9 +19,9 @@ spec:
             - {{ $tag }}
             {{- end }}
           {{- end }}
-      {{- if gt (len .Values.ingress.portOpts) 0 }}
-      portOpts:
-        {{ .Values.ingress.portOpts | toYaml | nindent 8 }}
+      {{- if gt (len .Values.ingress.ports) 0 }}
+      ports:
+        {{ .Values.ingress.ports | toYaml | nindent 8 }}
       {{- end }}
       {{- if .Values.ingress.rootVolume }}
       rootVolume:

@@ -53,7 +53,7 @@ controlPlane:
   image:
     filter:
       name: ""
-  portOpts: []
+  ports: []
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
@@ -69,7 +69,7 @@ worker:
   image:
     filter:
       name: ""
-  portOpts: []
+  ports: []
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
@@ -85,7 +85,7 @@ ingress:
   image:
     filter:
       name: ""
-  portOpts: []
+  ports: []
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
@@ -101,7 +101,7 @@ gpul4:
   image:
     filter:
       name: ""
-  portOpts: []
+  ports: []
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:
@@ -117,7 +117,7 @@ gpul40:
   image:
     filter:
       name: ""
-  portOpts: []
+  ports: []
   rootVolume: {}
   additionalBlockDevices: []
   securityGroups:

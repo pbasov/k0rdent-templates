@@ -19,8 +19,8 @@ spec:
             - {{ $tag }}
             {{- end }}
           {{- end }}
-      {{- if gt (len .Values.gpul4.portOpts) 0 }}
-      portOpts: {{ .Values.gpul4.portOpts | toYaml | nindent 8 }}
+      {{- if gt (len .Values.gpul4.ports) 0 }}
+      ports: {{ .Values.gpul4.ports | toYaml | nindent 8 }}
       {{- end }}
       {{- if .Values.gpul4.rootVolume }}
       rootVolume: {{ .Values.gpul4.rootVolume | toYaml | nindent 8 }}
