@@ -272,131 +272,10 @@
         },
         "portOpts": {
           "type": "array",
-          "description": "Ports to be attached to the server instance",
+          "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
             "type": "object",
-            "properties": {
-              "network": {
-                "type": "object",
-                "description": "Network is a query for an openstack network that the port will be created or discovered on",
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "description": "ID of the network"
-                  },
-                  "filter": {
-                    "type": "object",
-                    "description": "Filter for the network",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Name of the network"
-                      },
-                      "tags": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        },
-                        "description": "Tags for filtering the network"
-                      }
-                    }
-                  }
-                }
-              },
-              "description": {
-                "type": "string",
-                "description": "Human-readable description for the port"
-              },
-              "nameSuffix": {
-                "type": "string",
-                "description": "Will be appended to the name of the port if specified"
-              },
-              "fixedIPs": {
-                "type": "array",
-                "description": "List of pairs of subnet and/or IP address to assign to the port",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "subnet": {
-                      "type": "object",
-                      "description": "Subnet reference",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "ID of the subnet"
-                        },
-                        "filter": {
-                          "type": "object",
-                          "description": "Filter for the subnet",
-                          "properties": {
-                            "name": {
-                              "type": "string",
-                              "description": "Name of the subnet"
-                            },
-                            "tags": {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              },
-                              "description": "Tags for filtering the subnet"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "ipAddress": {
-                      "type": "string",
-                      "description": "IP address to assign"
-                    }
-                  }
-                }
-              },
-              "securityGroups": {
-                "type": "array",
-                "description": "List of security groups to assign to the port",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "ID of the security group"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "Name of the security group"
-                    },
-                    "filter": {
-                      "type": "object",
-                      "description": "Filter for the security group",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "Name of the security group"
-                        },
-                        "tags": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          },
-                          "description": "Tags for filtering the security group"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "tags": {
-                "type": "array",
-                "description": "Tags applied to the port and corresponding trunk",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "trunk": {
-                "type": "boolean",
-                "description": "Specifies whether trunking is enabled at the port level"
-              }
-            }
+            "additionalProperties": true
           }
         },
         "rootVolume": {
@@ -552,9 +431,10 @@
         },
         "portOpts": {
           "type": "array",
-          "description": "Ports to be attached to the server instance",
+          "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
-            "type": "string"
+            "type": "object",
+            "additionalProperties": true
           }
         },
         "rootVolume": {
@@ -710,9 +590,10 @@
         },
         "portOpts": {
           "type": "array",
-          "description": "Ports to be attached to the server instance",
+          "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
           "items": {
-            "type": "string"
+            "type": "object",
+            "additionalProperties": true
           }
         },
         "rootVolume": {
@@ -797,6 +678,156 @@
                 }
               }
             }
+          }
+        },
+        "securityGroups": {
+          "type": "array",
+          "description": "Security groups to be assigned to the instance",
+          "items": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the security group to filter by"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Optional: description for filtering"
+                  },
+                  "projectID": {
+                    "type": "string",
+                    "description": "Optional: project ID for filtering"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "gpul4": {
+      "type": "object",
+      "description": "Configuration of the GPU L4 instances",
+      "required": [
+        "flavor"
+      ],
+      "properties": {
+        "sshPublicKey": {
+          "type": "string",
+          "description": "SSH public key for accessing nodes"
+        },
+        "providerID": {
+          "type": ["string", "null"],
+          "description": "Unique ID for the instance provider"
+        },
+        "flavor": {
+          "type": "string",
+          "description": "OpenStack flavor for instance size"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "filter": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the image"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "portOpts": {
+          "type": "array",
+          "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "securityGroups": {
+          "type": "array",
+          "description": "Security groups to be assigned to the instance",
+          "items": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the security group to filter by"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Optional: description for filtering"
+                  },
+                  "projectID": {
+                    "type": "string",
+                    "description": "Optional: project ID for filtering"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "gpul40": {
+      "type": "object",
+      "description": "Configuration of the GPU L40 instances",
+      "required": [
+        "flavor"
+      ],
+      "properties": {
+        "sshPublicKey": {
+          "type": "string",
+          "description": "SSH public key for accessing nodes"
+        },
+        "providerID": {
+          "type": ["string", "null"],
+          "description": "Unique ID for the instance provider"
+        },
+        "flavor": {
+          "type": "string",
+          "description": "OpenStack flavor for instance size"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "filter": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the image"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "portOpts": {
+          "type": "array",
+          "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
           }
         },
         "securityGroups": {
