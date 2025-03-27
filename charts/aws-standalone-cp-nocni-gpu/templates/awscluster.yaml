@@ -20,6 +20,10 @@ spec:
         fromPort: 8472
         protocol: udp
         toPort: 8472
+      - description: geneve (cilium)
+        fromPort: 6081
+        protocol: udp
+        toPort: 6081
     additionalControlPlaneIngressRules:
       - description: "k0s controller join API"
         protocol: tcp
