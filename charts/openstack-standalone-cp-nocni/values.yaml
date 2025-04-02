@@ -126,6 +126,22 @@ gpul40:
       description: ""
       projectID: ""
 
+h200:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  ports: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
+
 k0s:
   version: v1.31.5+k0s.0
   api:

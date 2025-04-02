@@ -1,0 +1,36 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: OpenStackMachineTemplate
+metadata:
+  name: {{ include "openstackmachinetemplate.gpuh200.name" . }}
+spec:
+  template:
+    spec:
+      flavor: {{ .Values.h200.flavor }}
+      identityRef:
+        name: {{ .Values.identityRef.name }}
+        region: {{ .Values.identityRef.region }}
+        cloudName: {{ .Values.identityRef.cloudName}}
+      image:
+        filter:
+          name: {{ .Values.h200.image.filter.name }}
+          {{- if .Values.h200.image.filter.tags }}
+          tags:
+            {{- range $tag := .Values.h200.image.filter.tags }}
+            - {{ $tag }}
+            {{- end }}
+          {{- end }}
+      {{- if gt (len .Values.h200.ports) 0 }}
+      ports: {{ .Values.h200.ports | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if .Values.h200.rootVolume }}
+      rootVolume: {{ .Values.h200.rootVolume | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.h200.additionalBlockDevices) 0 }}
+      additionalBlockDevices: {{ .Values.h200.additionalBlockDevices | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.h200.securityGroups) 0 }}
+      securityGroups: {{ .Values.h200.securityGroups | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if not ( .Values.h200.sshPublicKey | empty) }}
+      sshKeyName: {{ .Values.h200.sshPublicKey }}
+      {{- end }}
