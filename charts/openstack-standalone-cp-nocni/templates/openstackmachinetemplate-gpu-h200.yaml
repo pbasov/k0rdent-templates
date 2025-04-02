@@ -5,32 +5,32 @@ metadata:
 spec:
   template:
     spec:
-      flavor: {{ .Values.h200.flavor }}
+      flavor: {{ .Values.gpuh200.flavor }}
       identityRef:
         name: {{ .Values.identityRef.name }}
         region: {{ .Values.identityRef.region }}
         cloudName: {{ .Values.identityRef.cloudName}}
       image:
         filter:
-          name: {{ .Values.h200.image.filter.name }}
-          {{- if .Values.h200.image.filter.tags }}
+          name: {{ .Values.gpuh200.image.filter.name }}
+          {{- if .Values.gpuh200.image.filter.tags }}
           tags:
-            {{- range $tag := .Values.h200.image.filter.tags }}
+            {{- range $tag := .Values.gpuh200.image.filter.tags }}
             - {{ $tag }}
             {{- end }}
           {{- end }}
-      {{- if gt (len .Values.h200.ports) 0 }}
-      ports: {{ .Values.h200.ports | toYaml | nindent 8 }}
+      {{- if gt (len .Values.gpuh200.ports) 0 }}
+      ports: {{ .Values.gpuh200.ports | toYaml | nindent 8 }}
       {{- end }}
-      {{- if .Values.h200.rootVolume }}
-      rootVolume: {{ .Values.h200.rootVolume | toYaml | nindent 8 }}
+      {{- if .Values.gpuh200.rootVolume }}
+      rootVolume: {{ .Values.gpuh200.rootVolume | toYaml | nindent 8 }}
       {{- end }}
-      {{- if gt (len .Values.h200.additionalBlockDevices) 0 }}
-      additionalBlockDevices: {{ .Values.h200.additionalBlockDevices | toYaml | nindent 8 }}
+      {{- if gt (len .Values.gpuh200.additionalBlockDevices) 0 }}
+      additionalBlockDevices: {{ .Values.gpuh200.additionalBlockDevices | toYaml | nindent 8 }}
       {{- end }}
-      {{- if gt (len .Values.h200.securityGroups) 0 }}
-      securityGroups: {{ .Values.h200.securityGroups | toYaml | nindent 8 }}
+      {{- if gt (len .Values.gpuh200.securityGroups) 0 }}
+      securityGroups: {{ .Values.gpuh200.securityGroups | toYaml | nindent 8 }}
       {{- end }}
-      {{- if not ( .Values.h200.sshPublicKey | empty) }}
-      sshKeyName: {{ .Values.h200.sshPublicKey }}
+      {{- if not ( .Values.gpuh200.sshPublicKey | empty) }}
+      sshKeyName: {{ .Values.gpuh200.sshPublicKey }}
       {{- end }}
