@@ -22,6 +22,10 @@
     {{- include "cluster.name" . }}-gpul40-mt
 {{- end }}
 
+{{- define "openstackmachinetemplate.gpuh200.name" -}}
+    {{- include "cluster.name" . }}-gpuh200-mt
+{{- end }}
+
 {{- define "k0scontrolplane.name" -}}
     {{- include "cluster.name" . }}-cp
 {{- end }}
@@ -44,4 +48,8 @@
 
 {{- define "machinedeployment.gpul40.name" -}}
     {{- include "cluster.name" . }}-gpul40-md
+{{- end }}
+
+{{- define "machinedeployment.gpuh200.name" -}}
+    {{- include "cluster.name" . }}-gpuh200-md
 {{- end }}

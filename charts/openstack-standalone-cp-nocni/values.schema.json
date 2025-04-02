@@ -35,6 +35,11 @@
       "type": "number",
       "minimum": 0
     },
+    "l40H200": {
+      "description": "The number of GPU H200 nodes",
+      "type": "number",
+      "minimum": 0
+    },
     "clusterNetwork": {
       "type": "object",
       "properties": {
@@ -786,6 +791,81 @@
     "gpul40": {
       "type": "object",
       "description": "Configuration of the GPU L40 instances",
+      "required": [
+        "flavor"
+      ],
+      "properties": {
+        "sshPublicKey": {
+          "type": "string",
+          "description": "SSH public key for accessing nodes"
+        },
+        "providerID": {
+          "type": ["string", "null"],
+          "description": "Unique ID for the instance provider"
+        },
+        "flavor": {
+          "type": "string",
+          "description": "OpenStack flavor for instance size"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "filter": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the image"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ports": {
+          "type": "array",
+          "description": "Ports to be attached to the server instance. Can include network, description, nameSuffix, fixedIPs, securityGroups, tags, trunk, and ResolvedPortSpecFields.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "securityGroups": {
+          "type": "array",
+          "description": "Security groups to be assigned to the instance",
+          "items": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the security group to filter by"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Optional: description for filtering"
+                  },
+                  "projectID": {
+                    "type": "string",
+                    "description": "Optional: project ID for filtering"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "gpuh200": {
+      "type": "object",
+      "description": "Configuration of the GPU H200 instances",
       "required": [
         "flavor"
       ],

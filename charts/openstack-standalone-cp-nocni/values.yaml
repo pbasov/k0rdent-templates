@@ -3,6 +3,7 @@ workersNumber: 2
 ingressNumber: 2
 gpuNumberL4: 1
 gpuNumberL40: 1
+gpuNumberH200: 1
 
 clusterNetwork:
   pods:
@@ -111,6 +112,22 @@ gpul4:
       projectID: ""
 
 gpul40:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  ports: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
+
+gpuh200:
   sshPublicKey: ""
   providerID: ""
   flavor: ""
