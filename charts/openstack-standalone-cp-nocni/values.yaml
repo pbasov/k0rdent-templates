@@ -144,6 +144,12 @@ gpuh200:
       projectID: ""
 
 k0s:
-  version: v1.31.5+k0s.0
+  version: v1.32.3+k0s.0
   api:
-    extraArgs: {}
+    extraArgs:
+      oidc-client-id: dev-1
+      oidc-groups-claim: groups
+      oidc-groups-prefix: 'keycloak:'
+      oidc-issuer-url: https://keycloak.example.dev/realms/realmWithLdap
+      oidc-username-claim: name
+      oidc-username-prefix: 'keycloak:'

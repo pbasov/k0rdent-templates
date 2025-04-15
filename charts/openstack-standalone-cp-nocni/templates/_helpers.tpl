@@ -3,27 +3,27 @@
 {{- end }}
 
 {{- define "openstackmachinetemplate.controlplane.name" -}}
-    {{- include "cluster.name" . }}-cp-mt
+    {{- include "cluster.name" . }}-cp-mt-{{ .Values.controlPlane.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
 {{- define "openstackmachinetemplate.worker.name" -}}
-    {{- include "cluster.name" . }}-worker-mt
+    {{- include "cluster.name" . }}-worker-mt-{{ .Values.worker.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
 {{- define "openstackmachinetemplate.ingress.name" -}}
-    {{- include "cluster.name" . }}-ingress-mt
+    {{- include "cluster.name" . }}-ingress-mt-{{ .Values.ingress.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
 {{- define "openstackmachinetemplate.gpul4.name" -}}
-    {{- include "cluster.name" . }}-gpul4-mt
+    {{- include "cluster.name" . }}-gpul4-mt-{{ .Values.gpul4.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
 {{- define "openstackmachinetemplate.gpul40.name" -}}
-    {{- include "cluster.name" . }}-gpul40-mt
+    {{- include "cluster.name" . }}-gpul40-mt-{{ .Values.gpul40.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
 {{- define "openstackmachinetemplate.gpuh200.name" -}}
-    {{- include "cluster.name" . }}-gpuh200-mt
+    {{- include "cluster.name" . }}-gpuh200-mt-{{ .Values.gpuh200.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
 {{- define "k0scontrolplane.name" -}}

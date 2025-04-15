@@ -21,6 +21,12 @@ spec:
         api:
           extraArgs:
             anonymous-auth: "true"
+            oidc-client-id: {{ .Values.oidc.oidcClientID | quote }}
+            oidc-groups-claim: {{ .Values.oidc.oidcGroupsClaim | quote }}
+            oidc-groups-prefix: {{ .Values.oidc.oidcGroupsPrefix | quote }}
+            oidc-issuer-url: {{ .Values.oidc.oidcIssuerURL | quote }}
+            oidc-username-claim: {{ .Values.oidc.oidcUsernameClaim | quote }}
+            oidc-username-prefix: {{ .Values.oidc.oidcUsernamePrefix | quote }}
         network:
           provider: custom
           kubeProxy:

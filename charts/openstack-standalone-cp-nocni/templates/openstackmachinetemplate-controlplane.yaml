@@ -38,3 +38,7 @@ spec:
       {{- if not ( .Values.controlPlane.sshPublicKey | empty) }}
       sshKeyName: {{ .Values.controlPlane.sshPublicKey }}
       {{- end }}
+      {{- if not ( .Values.controlPlane.schedulerHintAdditionalProperties | empty) }}
+      schedulerHintAdditionalProperties:
+        {{ .Values.controlPlane.schedulerHintAdditionalProperties | toYaml | nindent 8 }}
+      {{- end }}
