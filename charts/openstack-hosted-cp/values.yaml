@@ -1,0 +1,70 @@
+workersNumber: 2
+
+clusterNetwork:
+  pods:
+    cidrBlocks:
+    - "10.244.0.0/16"
+  services:
+    cidrBlocks:
+    - "10.96.0.0/12"
+  serviceDomain: "cluster.local"
+
+clusterLabels: {}
+clusterAnnotations: {}
+
+ccmRegional: true
+
+identityRef:
+  name: ""
+  cloudName: ""
+  region: ""
+
+bastion:
+  enabled: true
+  spec:
+    providerID: ""
+    flavor: ""
+    image:
+      filter:
+        name: ""
+
+managedSecurityGroups:
+  allowAllInClusterTraffic: true
+
+managedSubnets:
+- cidr: 10.6.0.0/24
+
+apiServerLoadBalancer:
+  enabled: true
+
+externalNetwork:
+  filter:
+    name: ""
+
+# K0smotron parameters
+k0smotron:
+  service:
+    type: LoadBalancer
+    apiPort: 6443
+    konnectivityPort: 8132
+
+worker:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  portOpts: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+    - filter:
+        name: "default"
+        description: ""
+        projectID: ""
+
+k0s:
+  version: v1.32.3+k0s.0
+  api:
+    extraArgs: {}

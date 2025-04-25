@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A KCM template to deploy a k8s cluster on AWS with control plane components within the management cluster.",
+  "type": "object",
+  "required": [
+    "workersNumber",
+    "vpcID",
+    "region",
+    "amiID",
+    "iamInstanceProfile",
+    "instanceType",
+    "securityGroupIDs",
+    "clusterIdentity",
+    "managementClusterName"
+  ],
+  "properties": {
+    "managementClusterName" : {
+      "description": "The name of the management cluster that this template is being deployed on",
+      "type": "string"
+    },
+    "workersNumber": {
+      "description": "The number of the worker machines",
+      "type": "integer",
+      "minimum": 1
+    },
+    "clusterNetwork": {
+      "type": "object",
+      "properties": {
+        "pods": {
+          "type": "object",
+          "properties": {
+            "cidrBlocks": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          }
+        },
+        "services": {
+          "type": "object",
+          "properties": {
+            "cidrBlocks": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
+    },
+    "clusterLabels": {
+      "type": "object",
+      "description": "Labels to apply to the cluster",
+      "required": [],
+      "additionalProperties": true
+    },    
+    "clusterAnnotations": {
+      "type": "object",
+      "description": "Annotations to apply to the cluster",
+      "required": [],
+      "additionalProperties": true
+    },    
+    "vpcID": {
+      "description": "The VPC ID to deploy the cluster in",
+      "type": "string"
+    },
+    "region": {
+      "description": "AWS region to deploy the cluster in",
+      "type": "string"
+    },
+    "sshKeyName": {
+      "description": "The name of the key pair to securely connect to your instances. Valid values are empty string (do not use SSH keys), a valid SSH key name, or omitted (use the default SSH key name)",
+      "type": ["string", "null"]
+    },
+    "publicIP": {
+      "description": "Specifies whether the instance should get a public IP",
+      "type": "boolean"
+    },
+    "subnets": {
+      "description": "Subnets configuration",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "ID defines a unique identifier to reference this resource",
+            "type": "string"
+          },
+          "availabilityZone": {
+            "description": "AvailabilityZone defines the availability zone to use for this subnet in the cluster's region",
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "bastion": {
+      "type": "object",
+      "description": "The configuration of the bastion host",
+      "required": [],
+      "properties": {
+          "enabled": {
+              "type": "boolean"
+          },
+          "disableIngressRules": {
+              "type": "boolean"
+          },
+          "allowedCIDRBlocks": {
+              "type": "array",
+              "items": {},
+              "uniqueItems": true
+          },
+          "instanceType": {
+              "type": "string"
+          },
+          "ami": {
+              "type": "string"
+          }
+      }
+    },
+    "clusterIdentity": {
+      "type": "object",
+      "description": "AWS Cluster Identity object reference",
+      "required": [
+        "name",
+	"kind"
+      ],
+      "properties": {
+        "name": {
+	  "description": "AWS ClusterIdentity object name",
+          "type": "string"
+        },
+        "kind": {
+	  "description": "AWS ClusterIdentity object kind",
+          "type": "string"
+        }
+      }
+    },
+    "amiID": {
+      "description": "The ID of Amazon Machine Image",
+      "type": "string"
+    },
+    "imageLookup": {
+      "description": "AMI lookup parameters",
+      "type": "object",
+      "required": [
+        "format",
+        "org"
+      ],
+      "properties": {
+        "format": {
+	  "description": "Format string which will be used for image lookup",
+          "type": "string"
+        },
+        "org": {
+	  "description": "AWS org ID which owns the AMI",
+          "type": "string"
+        },
+        "baseOS": {
+	  "description": "OS name which can be used in format string",
+          "type": "string"
+        }
+      }
+    },
+    "iamInstanceProfile": {
+      "description": "The name of an IAM instance profile to assign to the instance",
+      "type": "string"
+    },
+    "instanceType": {
+      "description": "The type of instance to create",
+      "type": "string"
+    },
+    "securityGroupIDs": {
+      "description": "The ID of security group that should be applied to the instance",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    },
+    "k0smotron": {
+      "description": "K0smotron parameters",
+      "type": "object",
+      "properties": {
+        "service": {
+          "description": "The configuration of a K0smotron service",
+          "properties": {
+            "type": {
+              "description": "Ingress methods for a k0smotron service",
+              "enum": [
+                "ClusterIP",
+                "NodePort",
+                "LoadBalancer"
+              ],
+              "type": "string"
+            },
+            "apiPort": {
+              "description": "The kubernetes API port for a k0smotron service",
+              "type": "number",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "konnectivityPort": {
+              "description": "The konnectivity port",
+              "type": "number",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          }
+        }
+      }
+    },
+    "k0s": {
+      "description": "K0s parameters",
+      "type": "object",
+      "required": [
+        "version"
+      ],
+      "properties": {
+        "version":{
+          "description": "K0s version to use",
+          "type": "string"
+        },
+        "api": {
+          "description": "Kubernetes api-server parameters",
+          "type": "object",
+          "properties": {
+            "extraArgs": {
+              "description": "Map of key-values (strings) for any extra arguments to pass down to Kubernetes api-server process",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
