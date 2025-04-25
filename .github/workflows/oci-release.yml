@@ -98,7 +98,7 @@ jobs:
       with:
         name: openstack-hosted-cp
         repository: pbasov/k0rdent-templates
-        tag: 0.0.1
+        tag: 0.0.2
         path: charts/openstack-hosted-cp
         registry: ghcr.io
         registry_username: ${{ github.actor }}
