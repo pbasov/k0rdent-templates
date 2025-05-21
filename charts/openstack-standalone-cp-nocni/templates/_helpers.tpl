@@ -26,6 +26,10 @@
     {{- include "cluster.name" . }}-gpuh200-mt-{{ .Values.gpuh200.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
+{{- define "openstackmachinetemplate.gpub200.name" -}}
+    {{- include "cluster.name" . }}-gpub200-mt-{{ .Values.gpub200.image | toString | sha256sum | trunc 8 }}
+{{- end }}
+
 {{- define "k0scontrolplane.name" -}}
     {{- include "cluster.name" . }}-cp
 {{- end }}
@@ -52,4 +56,8 @@
 
 {{- define "machinedeployment.gpuh200.name" -}}
     {{- include "cluster.name" . }}-gpuh200-md
+{{- end }}
+
+{{- define "machinedeployment.gpub200.name" -}}
+    {{- include "cluster.name" . }}-gpub200-md
 {{- end }}
