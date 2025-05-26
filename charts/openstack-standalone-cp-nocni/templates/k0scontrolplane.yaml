@@ -85,5 +85,8 @@ spec:
       kind: OpenStackMachineTemplate
       name: {{ include "openstackmachinetemplate.controlplane.name" . }}
       namespace: {{ .Release.Namespace }}
+{{- if .Values.controlPlane.failureDomain }}
+      failureDomain: {{ .Values.controlPlane.failureDomain }}
+{{- end }}
   replicas: {{ .Values.controlPlaneNumber }}
   version: {{ .Values.k0s.version }}

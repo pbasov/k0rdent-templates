@@ -1,0 +1,36 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: OpenStackMachineTemplate
+metadata:
+  name: {{ include "openstackmachinetemplate.gpub200vm.name" . }}
+spec:
+  template:
+    spec:
+      flavor: {{ .Values.gpub200vm.flavor }}
+      identityRef:
+        name: {{ .Values.identityRef.name }}
+        region: {{ .Values.identityRef.region }}
+        cloudName: {{ .Values.identityRef.cloudName}}
+      image:
+        filter:
+          name: {{ .Values.gpub200vm.image.filter.name }}
+          {{- if .Values.gpub200vm.image.filter.tags }}
+          tags:
+            {{- range $tag := .Values.gpub200vm.image.filter.tags }}
+            - {{ $tag }}
+            {{- end }}
+          {{- end }}
+      {{- if gt (len .Values.gpub200vm.ports) 0 }}
+      ports: {{ .Values.gpub200vm.ports | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if .Values.gpub200vm.rootVolume }}
+      rootVolume: {{ .Values.gpub200vm.rootVolume | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.gpub200vm.additionalBlockDevices) 0 }}
+      additionalBlockDevices: {{ .Values.gpub200vm.additionalBlockDevices | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.gpub200vm.securityGroups) 0 }}
+      securityGroups: {{ .Values.gpub200vm.securityGroups | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if not ( .Values.gpub200vm.sshPublicKey | empty) }}
+      sshKeyName: {{ .Values.gpub200vm.sshPublicKey }}
+      {{- end }}

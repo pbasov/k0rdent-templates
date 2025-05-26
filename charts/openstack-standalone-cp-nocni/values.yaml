@@ -1,10 +1,11 @@
 controlPlaneNumber: 3
-workersNumber: 2
+workersNumber: 3
 ingressNumber: 2
-gpuNumberL4: 1
-gpuNumberL40: 1
-gpuNumberH200: 1
+gpuNumberL4: 0
+gpuNumberL40: 0
+gpuNumberH200: 0
 gpuNumberB200: 0
+gpuNumberB200vm: 0
 
 clusterNetwork:
   pods:
@@ -145,6 +146,22 @@ gpuh200:
       projectID: ""
 
 gpub200:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  ports: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
+
+gpub200vm:
   sshPublicKey: ""
   providerID: ""
   flavor: ""

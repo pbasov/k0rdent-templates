@@ -65,7 +65,7 @@ jobs:
       with:
         name: openstack-standalone-cp-nocni
         repository: pbasov/k0rdent-templates
-        tag: 0.1.1
+        tag: 0.1.2
         path: charts/openstack-standalone-cp-nocni
         registry: ghcr.io
         registry_username: ${{ github.actor }}

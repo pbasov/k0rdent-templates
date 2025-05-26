@@ -31,3 +31,6 @@ spec:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: OpenStackMachineTemplate
         name: {{ include "openstackmachinetemplate.ingress.name" . }}
+{{- if .Values.ingress.failureDomain }}
+      failureDomain: {{ .Values.ingress.failureDomain }}
+{{- end }}

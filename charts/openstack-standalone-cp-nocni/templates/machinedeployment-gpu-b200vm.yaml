@@ -1,13 +1,13 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
-  name: {{ include "machinedeployment.worker.name" . }}
+  name: {{ include "machinedeployment.gpub200vm.name" . }}
   annotations:
     # Temporary fix to address https://github.com/k0sproject/k0smotron/issues/911
     machineset.cluster.x-k8s.io/skip-preflight-checks: "ControlPlaneIsStable"
 spec:
   clusterName: {{ include "cluster.name" . }}
-  replicas: {{ .Values.workersNumber }}
+  replicas: {{ .Values.gpuNumberB200 }}
   selector:
     matchLabels:
       cluster.x-k8s.io/cluster-name: {{ include "cluster.name" . }}
@@ -15,9 +15,13 @@ spec:
     metadata:
       labels:
         cluster.x-k8s.io/cluster-name: {{ include "cluster.name" . }}
-        node-role.kubernetes.io/worker-infra: ""
-        node.kubernetes.io/role: worker-infra
+        node-role.kubernetes.io/gpu: ""
+        node.kubernetes.io/role: gpu
+        node.kubernetes.io/gpu-type: "b200vm"
     spec:
+      taints:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/gpu
       bootstrap:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
@@ -27,7 +31,7 @@ spec:
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
         kind: OpenStackMachineTemplate
-        name: {{ include "openstackmachinetemplate.worker.name" . }}
-{{- if .Values.worker.failureDomain }}
-      failureDomain: {{ .Values.worker.failureDomain }}
+        name: {{ include "openstackmachinetemplate.gpub200vm.name" . }}
+{{- if .Values.gpub200vm.failureDomain }}
+      failureDomain: {{ .Values.gpub200vm.failureDomain }}
 {{- end }}
