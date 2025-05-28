@@ -6,6 +6,7 @@ spec:
   {{- if .Values.controlPlaneAvailabilityZones }}
   controlPlaneAvailabilityZones:
     {{- toYaml .Values.controlPlaneAvailabilityZones | nindent 4 }}
+  {{- end}}
   {{- if .Values.apiServerLoadBalancer }}
   apiServerLoadBalancer:
     {{- toYaml .Values.apiServerLoadBalancer | nindent 4 }}
