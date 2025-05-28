@@ -109,7 +109,7 @@ jobs:
       with:
         name: openstack-standalone-cp-mtu
         repository: pbasov/k0rdent-templates
-        tag: 0.2.2
+        tag: 0.2.3
         path: charts/openstack-standalone-cp-mtu
         registry: ghcr.io
         registry_username: ${{ github.actor }}

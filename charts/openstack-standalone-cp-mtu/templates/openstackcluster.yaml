@@ -3,6 +3,9 @@ kind: OpenStackCluster
 metadata:
   name: {{ include "cluster.name" . }}
 spec:
+  {{- if .Values.controlPlaneAvailabilityZones }}
+  controlPlaneAvailabilityZones:
+    {{- toYaml .Values.controlPlaneAvailabilityZones | nindent 4 }}
   {{- if .Values.apiServerLoadBalancer }}
   apiServerLoadBalancer:
     {{- toYaml .Values.apiServerLoadBalancer | nindent 4 }}
