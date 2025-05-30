@@ -7,7 +7,7 @@ metadata:
     machineset.cluster.x-k8s.io/skip-preflight-checks: "ControlPlaneIsStable"
 spec:
   clusterName: {{ include "cluster.name" . }}
-  replicas: {{ .Values.gpuNumberB200 }}
+  replicas: {{ .Values.gpuNumberB200vm }}
   selector:
     matchLabels:
       cluster.x-k8s.io/cluster-name: {{ include "cluster.name" . }}
