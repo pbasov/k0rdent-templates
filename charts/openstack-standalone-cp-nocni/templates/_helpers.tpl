@@ -22,6 +22,10 @@
     {{- include "cluster.name" . }}-gpul40-mt-{{ .Values.gpul40.image | toString | sha256sum | trunc 8 }}
 {{- end }}
 
+{{- define "openstackmachinetemplate.gpuh100.name" -}}
+    {{- include "cluster.name" . }}-gpuh100-mt-{{ .Values.gpuh100.image | toString | sha256sum | trunc 8 }}
+{{- end }}
+
 {{- define "openstackmachinetemplate.gpuh200.name" -}}
     {{- include "cluster.name" . }}-gpuh200-mt-{{ .Values.gpuh200.image | toString | sha256sum | trunc 8 }}
 {{- end }}

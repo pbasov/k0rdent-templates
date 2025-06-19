@@ -1,0 +1,36 @@
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: OpenStackMachineTemplate
+metadata:
+  name: {{ include "openstackmachinetemplate.gpuh100.name" . }}
+spec:
+  template:
+    spec:
+      flavor: {{ .Values.gpuh100.flavor }}
+      identityRef:
+        name: {{ .Values.identityRef.name }}
+        region: {{ .Values.identityRef.region }}
+        cloudName: {{ .Values.identityRef.cloudName}}
+      image:
+        filter:
+          name: {{ .Values.gpuh100.image.filter.name }}
+          {{- if .Values.gpuh100.image.filter.tags }}
+          tags:
+            {{- range $tag := .Values.gpuh100.image.filter.tags }}
+            - {{ $tag }}
+            {{- end }}
+          {{- end }}
+      {{- if gt (len .Values.gpuh100.ports) 0 }}
+      ports: {{ .Values.gpuh100.ports | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if .Values.gpuh100.rootVolume }}
+      rootVolume: {{ .Values.gpuh100.rootVolume | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.gpuh100.additionalBlockDevices) 0 }}
+      additionalBlockDevices: {{ .Values.gpuh100.additionalBlockDevices | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if gt (len .Values.gpuh100.securityGroups) 0 }}
+      securityGroups: {{ .Values.gpuh100.securityGroups | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if not ( .Values.gpuh100.sshPublicKey | empty) }}
+      sshKeyName: {{ .Values.gpuh100.sshPublicKey }}
+      {{- end }}

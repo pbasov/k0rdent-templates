@@ -3,6 +3,7 @@ workersNumber: 3
 ingressNumber: 2
 gpuNumberL4: 0
 gpuNumberL40: 0
+gpuNumberH100: 0
 gpuNumberH200: 0
 gpuNumberB200: 0
 gpuNumberB200vm: 0
@@ -130,6 +131,22 @@ gpul40:
       projectID: ""
 
 gpuh200:
+  sshPublicKey: ""
+  providerID: ""
+  flavor: ""
+  image:
+    filter:
+      name: ""
+  ports: []
+  rootVolume: {}
+  additionalBlockDevices: []
+  securityGroups:
+  - filter:
+      name: "default"
+      description: ""
+      projectID: ""
+
+gpuh100:
   sshPublicKey: ""
   providerID: ""
   flavor: ""
