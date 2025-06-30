@@ -66,6 +66,10 @@
     {{- include "cluster.name" . }}-gpuh200-md
 {{- end }}
 
+{{- define "machinedeployment.gpuh100.name" -}}
+    {{- include "cluster.name" . }}-gpuh100-md
+{{- end }}
+
 {{- define "machinedeployment.gpub200vm.name" -}}
     {{- include "cluster.name" . }}-gpub200vm-md
 {{- end }}
