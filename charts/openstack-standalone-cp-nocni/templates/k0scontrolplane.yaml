@@ -16,6 +16,12 @@ spec:
       metadata:
         name: k0s
       spec:
+        featureGates:
+        - components:
+          - kubelet
+          - kube-apiserver
+          enabled: true
+          name: ImageVolume
         api:
           extraArgs:
             anonymous-auth: "true"
